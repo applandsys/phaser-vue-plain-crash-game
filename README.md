@@ -1,4 +1,4 @@
-# Phaser Vue Template
+# Phaser Vue Plain Crash Game
 
 This is a Phaser 3 project template that uses the Vue framework and Vite for bundling. It includes a bridge for Vue to Phaser game communication, hot-reloading for quick development workflow and scripts to generate production-ready builds.
 
