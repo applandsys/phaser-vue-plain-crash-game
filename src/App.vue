@@ -8,17 +8,7 @@ import PhaserGame from './game/PhaserGame.vue';
 <template>
     <div class="container mt-5 ">
         <div class="row">
-            <div class="col-md-6">
-                <div class="left-panel">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Stats ...</h5>
-                            <p class="card-text">No result to show.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-6 order-md-2">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="game-wrapper">
@@ -28,10 +18,10 @@ import PhaserGame from './game/PhaserGame.vue';
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-12">
-                         <div class="buttons d-flex">
-                             <button type="button" class="btn btn-secondary mx-2">Stake Selector</button>
-                             <button type="button" class="btn btn-secondary">Auto Bet</button>
-                         </div>
+                        <div class="buttons d-flex">
+                            <button type="button" class="btn btn-secondary mx-2">Stake Selector</button>
+                            <button type="button" class="btn btn-secondary">Auto Bet</button>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-3 row">
@@ -69,6 +59,16 @@ import PhaserGame from './game/PhaserGame.vue';
                             <div class="button-wrapper w-50">
                                 <button type="button" class="btn btn-danger w-100">x</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <div class="left-panel">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Stats ...</h5>
+                            <p class="card-text">No result to show.</p>
                         </div>
                     </div>
                 </div>

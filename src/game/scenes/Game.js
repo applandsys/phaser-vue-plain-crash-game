@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import plain_crash from '@/game_assets/plane_crush.png';
+import fire from '@/game_assets/fire.png';
 import plane_image from '@/game_assets/plane_img.png';
 import plane_shadow from '@/game_assets/plane_shadow.png';
 import hills from '@/game_assets/mountain-1.svg';
@@ -39,7 +39,7 @@ export class Game extends Scene
         this.load.image('hills', hills);
         this.load.image('smoke', plane_shadow);
         this.load.image('watchCircle', watch_circle);
-        this.load.spritesheet('fire', plain_crash, { frameWidth: 200, frameHeight: 200 });
+        this.load.spritesheet('fire', fire, { frameWidth: 200, frameHeight: 200 });
     }
     create ()
     {

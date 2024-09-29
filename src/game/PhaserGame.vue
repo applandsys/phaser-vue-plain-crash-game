@@ -19,6 +19,7 @@ onMounted(() => {
     window.addEventListener('resize', () => {
         game.value.scale.resize(window.innerWidth, window.innerHeight);
     });
+    
 
     EventBus.on('current-scene-ready', (currentScene) => {
 

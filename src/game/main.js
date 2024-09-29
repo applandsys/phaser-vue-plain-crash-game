@@ -11,7 +11,7 @@ const config = {
         autoCenter: Phaser.Scale.CENTER_BOTH,
         parent: 'game-container',
         width: window.innerWidth,
-        height: window.innerHeight,
+        height: 400,
     },
     physics: {
         default: 'arcade',
