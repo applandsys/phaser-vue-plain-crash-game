@@ -10,6 +10,12 @@ export class Game extends Scene
     constructor ()
     {
         super('Game');
+        
+        this.canvasWidth;
+        this.canvasHeight;
+        
+        this.planePositions;
+        
         this.plane;
         this.hills;
         this.watchCircle;
@@ -18,12 +24,11 @@ export class Game extends Scene
         this.countdown = 9;
         this.countdownText;
         this.planeCrashed = false;
-        this.planePosition = { x: 50 , y: 380};
         this.randomCrashTime;  // This will store the random time for the crash
         this.timeElapsed = 0;  // Track the elapsed time after countdown
         this.flightTimerText;  // Text to display the timer during flight
         this.flightStartTime = 0;  // Store the time when flight starts
-        this.textPosition = {x: 500, y: 300};
+        this.textPosition;
         this.planeTrail = [];
         this.graphics;
     }
@@ -38,13 +43,21 @@ export class Game extends Scene
     }
     create ()
     {
-        this.hills = this.add.tileSprite(300, 300, 600, 100, 'hills');
-        this.watchCircle = this.add.image(550, 350, 'watchCircle').setScale(0.5);
+
+        this.canvasWidth  = this.sys.game.canvas.width;
+        this.canvasHeight  = this.sys.game.canvas.height;
+
+        this.planePositions = {x : this.canvasWidth * 0.03, y: this.canvasHeight * 0.9}
+
+        this.textPosition = {x: this.canvasWidth - 100, y: this.canvasHeight - 100};
+        
+        this.hills = this.add.tileSprite(this.canvasWidth * 0.1, this.canvasHeight * 0.9, this.canvasWidth * 2 , 200, 'hills');
+        this.watchCircle = this.add.image(this.canvasWidth * 0.9, this.canvasHeight * 0.9, 'watchCircle').setScale(0.15);
         this.watchCircle.setOrigin(0.5, 0.5);  // Origin point at the bottom of the hand
 
-        // Add the plane at the bottom left
-        this.plane = this.physics.add.sprite(this.planePosition.x, this.planePosition.y, 'plane');
-        this.plane.setScale(2);
+        // Add the plane sprite and position it
+        this.plane = this.add.sprite(this.planePositions.x, this.planePositions.y, 'plane');
+        this.plane.setScale(0.5);
 
         // this.smokeTrail = this.add.particles('smoke').createEmitter({
         //     speed: 100,
@@ -55,9 +68,9 @@ export class Game extends Scene
         // });
         
         // Add countdown text
-        this.countdownText = this.add.text( this.textPosition.x,  this.textPosition.y, ` ${this.countdown}`, { fontSize: '50px', fill: '#fff' });
+        this.countdownText = this.add.text( this.textPosition.x ,  this.textPosition.y, ` ${this.countdown}`, { fontSize: '50px',     fontStyle: 'bold', fill: '#bd0707' });
         // Add flight timer text for displaying the timer in seconds with milliseconds
-        this.flightTimerText = this.add.text(this.textPosition.x-50,  this.textPosition.y, '', { fontSize: '30px', fill: '#fff' });
+        this.flightTimerText = this.add.text(this.textPosition.x-50,  this.textPosition.y, ``, { fontSize: '30px',  fontStyle: 'bold', fill: '#fff' });
       
         // Add fire animation
         this.anims.create({
@@ -69,7 +82,7 @@ export class Game extends Scene
 
         // Start countdown timer
         this.time.addEvent({ delay: 1000, callback: this.updateCountdown, callbackScope: this, loop: true });
-        this.randomCrashTime = Phaser.Math.Between(2000, 32000);
+        this.randomCrashTime = Phaser.Math.Between(1000, 10000);
 
         this.graphics = this.add.graphics();
         this.graphics.lineStyle(3, 0xFFCD00, 2);  // Line style (white, width 2)
@@ -79,7 +92,7 @@ export class Game extends Scene
         if (this.countdown <= 0 && !this.planeCrashed) {
             // Move plane from bottom-left to top-right
             this.watchCircle.setVisible(false);
-            if(this.plane.x < 580){
+            if(this.plane.x < this.canvasWidth - 50){
                 this.plane.x += 2;
                 this.plane.y -= 1.1;
             }
@@ -156,8 +169,8 @@ planeCrash() {
         // Reset variables and positions to restart the game
         this.planeCrashed = false;
         this.plane.setVisible(true);
-        this.plane.x = this.planePosition.x;
-        this.plane.y = this.planePosition.y;
+        this.plane.x =  this.planePositions.x;
+        this.plane.y =  this.planePositions.y;
         this.countdown = 10;
         this.countdownText.setText(`${this.countdown}`);
         this.timeElapsed = 0;

@@ -13,6 +13,13 @@ onMounted(() => {
 
     game.value = StartGame('game-container');
 
+    game.value.canvas.style.borderRadius = '20px'; // Apply rounded border
+    game.value.canvas.style.border = '2px solid black'; // Optional: Add a black border
+
+    window.addEventListener('resize', () => {
+        game.value.scale.resize(window.innerWidth, window.innerHeight);
+    });
+
     EventBus.on('current-scene-ready', (currentScene) => {
 
         emit('current-active-scene', currentScene);

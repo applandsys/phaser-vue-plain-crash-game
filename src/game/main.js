@@ -6,8 +6,13 @@ import Phaser from 'phaser';
 // https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: Phaser.AUTO,
-    width: 600,
-    height: 400,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        parent: 'game-container',
+        width: window.innerWidth,
+        height: window.innerHeight,
+    },
     physics: {
         default: 'arcade',
         arcade: {
@@ -15,7 +20,6 @@ const config = {
             debug: false
         }
     },
-    parent: 'game-container',
     backgroundColor: '#050d38',
     scene: [
         Game
