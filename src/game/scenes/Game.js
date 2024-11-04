@@ -34,7 +34,6 @@ export class Game extends Scene
     }
 
      preload() {
-    // Load images and animations here
         this.load.image('plane', plane_image);
         this.load.image('hills', hills);
         this.load.image('smoke', plane_shadow);
@@ -149,7 +148,7 @@ updateCountdown() {
 
 planeCrash() {
     // Show fire animation at the plane crash location
-    this.fire = this.add.sprite(this.plane.x, this.plane.y, 'fire').setScale(2);
+    this.fire = this.add.sprite(this.plane.x, this.plane.y, 'fire').setScale(.5);
     this.fire.play('burn');
 
     // Hide the plane
